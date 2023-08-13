@@ -11,3 +11,6 @@ Features included:-
 5. Customer View/Track Request
 6. Staff Manage Request
 7. Staff Update Request
+
+
+Project created using django. Database with sqlite. Frontend with basic html/css
