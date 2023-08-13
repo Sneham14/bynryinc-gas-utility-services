@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+    <h2>Account Information</h2>
+    <p>Welcome to Gas Utility Consumer Services</p>
+    <a href=></a>
+    <table border="2" style="width:50%;">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Requests</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in data %}
+            <tr style="text-align:center;">                
+            <td>{{d.user}}</td>
+            <td>{{d.contact}}</td>
+            <td>{{d.email}}</td>
+            <td>{{d.requests}}</td>
+            </tr>
+        </tbody>
+        </table>
+        {% endfor %}
+</center>
+{% endblock %}

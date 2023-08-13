@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Utility Services</title>
+    <style>
+    body, h1, h2, h3, p, ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 24px;
+        transition: color 0.3s;
+    }
+
+    header {
+        background-color: rgb(19, 83, 118);
+        color:white;
+        padding: 20px 0;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #f39c12;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    main {
+    padding: 20px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+                
+                {% if user.is_authenticated %}
+                    <a href="{% url 'accountinfo' %}">Account Info</a>
+                    <a href="{% url 'servicerequests' %}">Service Requests</a>
+                    <a href="{% url 'customerlogout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'customerlogin' %}">Login</a>
+                    <a href="{% url 'register' %}">Customer Register</a>
+                    <a href="{% url 'stafflogin' %}"> Staff Login</a>
+                {% endif %}
+            
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+
+</body>
+</html>

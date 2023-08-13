@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Service Requests</h2>
+  <ol>
+    {% for request in service_requests %}
+      <li>
+        Request Type: {{ request.request_type }}
+        Status: {{ request.request_status }}
+        <a href="{% url 'viewdetails'  %}">View details</a>
+        
+      </li>
+    {% empty %}
+      <li>No service requests submitted yet.</li>
+    {% endfor %}
+  </ol>
+
+  <h3>Submit New Service Request</h3>
+  <p><a href="{% url 'submitservicerequest' %}">Submit a new service request</a></p>
+
+
+
+{% endblock %}

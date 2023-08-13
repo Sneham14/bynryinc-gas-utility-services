@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Service Request Details</h2>
+  <p>Request Type: {{ service_request.request_type }}</p>
+  <p>Status: {{ service_request.request_status }}</p>
+  <p>Request Date: {{ service_request.requested_on }}</p>
+  <p>Request Details: {{service_request.request_details}}</p>
+  <p>Resolved Date:{{service_request.resolved_on}}</p>
+  <p>Attachments: {{service_request.attachment}}</p>
+
+
+  <a href="{% url 'servicerequests' %}">Back to Service Requests</a>
+{% endblock %}
