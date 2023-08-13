@@ -5,6 +5,7 @@ from .forms import *
 from django.contrib import messages
 from .models import *
 from django.contrib import auth
+from SupportApp.models import Chat  
 
 
 # Create your views here.
@@ -20,7 +21,6 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
 
-
 def customerlogin(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -31,12 +31,26 @@ def customerlogin(request):
             if user_details is not None:
                 login(request, user_details)
                 print("User authenticated:", user_details)
-                return redirect('accountinfo')  # Redirect to the account information page or any other desired page
+
+                # Fetch chat data from the database, adjust this query according to your needs
+                chat_data = Chat.objects.filter(sender=user_details)
+
+                context = {
+                    'chat': chat_data,
+                }
+
+                return render(request, 'chatbody.html', context)  # Render the chat template with chat data
             else:
                 messages.error(request, 'Invalid login credentials')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'login.html', context)
+
 
 def accountinfo(request):
     data=CustomerModel.objects.all()
@@ -101,3 +115,12 @@ def stafflogin(request):
     return render(request, 'stafflogin.html', {'form': form})
 
 
+def staffui(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            auser = request.user
+            return render(request, 'staffui.html', {"auser": auser})
+        else:
+            return redirect('home')
+    elif request.method == 'POST':
+        return render(request, 'servicerequests.html')

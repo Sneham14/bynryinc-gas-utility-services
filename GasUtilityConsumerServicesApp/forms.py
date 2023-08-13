@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import CustomerModel, ServiceRequestModel
+from .models import CustomerModel, ServiceRequestModel, StaffModel
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField()
@@ -33,3 +33,6 @@ class ServiceRequestForm(forms.ModelForm):
 class StaffLoginForm(forms.Form):
     username = forms.CharField(max_length=120)
     password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model=StaffModel
+        fields="__all__"

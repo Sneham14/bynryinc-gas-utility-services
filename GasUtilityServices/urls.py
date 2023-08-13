@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from GasUtilityConsumerServicesApp.views import stafflogin, customerlogout, register, customerlogin, accountinfo, servicerequests,viewdetails, submitservicerequest
+from GasUtilityConsumerServicesApp.views import staffui,  stafflogin, customerlogout, register, customerlogin, accountinfo, servicerequests,viewdetails, submitservicerequest
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,8 @@ urlpatterns = [
     path('submitservicerequest', submitservicerequest, name="submitservicerequest"),
     path('servicerequests', servicerequests, name="servicerequests"),
     path('viewdetails', viewdetails, name="viewdetails"),
-    path('stafflogin', stafflogin, name='stafflogin')
+    path('stafflogin', stafflogin, name='stafflogin'),
+    path('staffui', staffui, name="staffui")
 
 ]
 

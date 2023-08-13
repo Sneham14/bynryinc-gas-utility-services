@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
 
 
 
@@ -42,6 +41,19 @@ class ServiceRequestModel(models.Model):
         if self.request_status == 'Resolved' and not self.resolved_on:
             self.resolved_on = timezone.now()  # Import timezone if not already imported
         super().save(*args, **kwargs)
+
+class StaffModel(models.Model):
+    staff_id = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.user.username
+
+class consultation(models.Model):
+    customer = models.ForeignKey(CustomerModel ,null=True, on_delete=models.SET_NULL)
+    staff = models.ForeignKey(StaffModel ,null=True, on_delete=models.SET_NULL)
+    servicerequests = models.OneToOneField(ServiceRequestModel, null=True, on_delete=models.SET_NULL)
+    consultation_date = models.DateField()
+    status = models.CharField(max_length = 20)
 
 
 
